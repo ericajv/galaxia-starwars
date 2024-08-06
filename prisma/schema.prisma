@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Planet {
+  id         String @id @default(uuid())
+  name       String
+  climate    String
+  ground     Float
+  population Int
+
+  character Character[]
+
+  starSystemId String     @map("star_system")
+  starSystem   StarSystem @relation(fields: [starSystemId], references: [id])
+
+  @@map("planets")
+}
+
+model StarSystem {
+  id          String @id @default(uuid())
+  name        String
+  description String
+
+  planet Planet[]
+
+  @@map("star_systems")
+}
+
+model Character {
+  id          String @id @default(uuid())
+  name        String
+  race        String
+  affiliation String
+
+  Planet   Planet @relation(fields: [planetId], references: [id])
+  planetId String
+
+  @@map("characters")
+}
+
+model Spacecraft {
+  id           String @id @default(uuid())
+  name         String
+  model        String
+  manufacturer String
+  capacity     Int
+
+  @@map("spaceships")
+}
