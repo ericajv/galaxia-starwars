@@ -44,7 +44,7 @@ model Character {
   @@map("characters")
 }
 
-model Spacecraft {
+model Spaceship {
   id           String @id @default(uuid())
   name         String
   model        String
@@ -52,4 +52,13 @@ model Spacecraft {
   capacity     Int
 
   @@map("spaceships")
+}
+
+model User {
+  id       String   @id @default(uuid())
+  name     String
+  email    String   @unique
+  password String
+
+  @@map("users")
 }
