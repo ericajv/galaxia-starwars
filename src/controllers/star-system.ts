@@ -1,10 +1,11 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpException, HttpStatus, Param, Patch, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpCode, HttpException, HttpStatus, Param, Patch, Post, UseGuards } from "@nestjs/common";
 import { UpdateStarSystemsDto } from "src/dto/star-systems/update-star-systems.dto";
 import { PrismaService } from "src/prisma/prisma.service";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
-
+import { AuthGuard } from "src/auth/auth.guard";
 
 @Controller('/star-system')
+@UseGuards(AuthGuard)
 export class StarSystemController {
   constructor(private prisma: PrismaService) { }
 

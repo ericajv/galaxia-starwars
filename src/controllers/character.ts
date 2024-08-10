@@ -1,10 +1,12 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpException, HttpStatus, Param, Patch, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpCode, HttpException, HttpStatus, Param, Patch, Post, UseGuards } from "@nestjs/common";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
+import { AuthGuard } from "src/auth/auth.guard";
 import { CreateCharactertDto } from "src/dto/character/create-character.dto";
 import { UpdateCharactertDto } from "src/dto/character/update-character.dto";
 import { PrismaService } from "src/prisma/prisma.service";
 
 @Controller('/characters')
+@UseGuards(AuthGuard)
 export class CharactertController{
   constructor(private prisma: PrismaService) {}
     

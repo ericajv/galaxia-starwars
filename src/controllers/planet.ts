@@ -1,10 +1,12 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpException, HttpStatus, Param, Patch, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpCode, HttpException, HttpStatus, Param, Patch, Post, UseGuards } from "@nestjs/common";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
+import { AuthGuard } from "src/auth/auth.guard";
 import { CreatePlanetDto } from "src/dto/planet/create-planet.dto";
 import { UpdatePlanetDto } from "src/dto/planet/update-planet.dto";
 import { PrismaService } from "src/prisma/prisma.service";
 
 @Controller('/planets')
+@UseGuards(AuthGuard)
 export class PlanetController{
   constructor(private prisma: PrismaService) {}
     
