@@ -3,6 +3,7 @@ import { UpdateStarSystemsDto } from "src/dto/star-systems/update-star-systems.d
 import { PrismaService } from "src/prisma/prisma.service";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 import { AuthGuard } from "src/auth/auth.guard";
+import { CreateStarSystemtDto } from "src/dto/star-systems/create-star-systems.dto";
 
 @Controller('/star-system')
 @UseGuards(AuthGuard)
@@ -16,12 +17,13 @@ export class StarSystemController {
 
   @Post('/')
   @HttpCode(201)
-  async post(@Body() body: any) {
+  async post(@Body() body: CreateStarSystemtDto) {
     const { name, description } = body
     await this.prisma.starSystem.create({
       data: { name, description }
     })
   }
+
   @Get('/:id')
   async getById(@Param('id') id: string) {
     const starSystem = await this.prisma.starSystem.findUnique({ where: { id } })
@@ -31,6 +33,7 @@ export class StarSystemController {
     }
     return starSystem
   }
+
   @Delete('/:id')
   @HttpCode(204)
   async delete(@Param('id') id: string) {

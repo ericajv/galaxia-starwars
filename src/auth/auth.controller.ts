@@ -1,6 +1,8 @@
 import { Body, ConflictException, Controller, Post, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { compare, hash } from 'bcryptjs';
+import { SigninDto } from 'src/dto/auth/signin.dto';
+import { SignupDto } from 'src/dto/auth/signup.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Controller('auth')
@@ -11,7 +13,7 @@ export class AuthController {
   ) {}
 
   @Post('/signup')
-  async register(@Body() body: any) {
+  async signup(@Body() body: SignupDto) {
     const { name, email, password } = body
 
     const userWithSameEmail = await this.prisma.user.findUnique({ where: { email } })
@@ -32,7 +34,7 @@ export class AuthController {
   }
 
   @Post('/signin')
-  async signIn(@Body() body: any) {
+  async signin(@Body() body: SigninDto) {
     const { email, password } = body
 
     const user = await this.prisma.user.findUnique({ where: { email } })

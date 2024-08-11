@@ -6,5 +6,4 @@ export class UpdateStarSystemsDto {
   
   @IsNotEmpty()
   "description": string;
-  
 }
