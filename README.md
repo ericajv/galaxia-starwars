@@ -26,9 +26,9 @@ A **Galaxia de Star Wars API** é um projeto inspirado no universo de Star Wars,
 
 #### 2. Instale as dependências:
 
-    ```bash
+   ```bash
     npm install 
-    ``` 
+   ```
     
 #### 3. Configure as variáveis de ambiente:
 
