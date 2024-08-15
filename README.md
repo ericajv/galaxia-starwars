@@ -10,6 +10,7 @@ A **Galaxia de Star Wars API** é um projeto inspirado no universo de Star Wars,
 
 ## Funcionalidades
 - **Gerenciamento de Planetas**: Criação, atualização, listagem e remoção de planetas.
+- **Gerenciamento de Personagens**: Criação, atualização, listagem e remoção de personagens.
 - **Gerenciamento de Sistemas**: Criação, atualização, listagem e remoção de sistemas estelares.
 - **Gerenciamento de Naves**: Criação, atualização, listagem e remoção de naves espaciais.
 - **Relacionamentos**: Gerenciamento das relações entre planetas, sistemas e naves.
